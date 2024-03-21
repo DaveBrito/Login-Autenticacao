@@ -1,5 +1,6 @@
 package com.example.login;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,11 +22,15 @@ public class MainActivity extends AppCompatActivity {
     TextInputEditText editTextEmail, editTextPassword;
 
     Button login;
+
+    Button recuperar; // Corrigido o nome da variável
+
     TextView criar;
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.senha);
         login = findViewById(R.id.login);
         criar = findViewById(R.id.criar);
+        recuperar = findViewById(R.id.recuperar);
 
         criar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, RegisterPage.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+        recuperar.setOnClickListener(new View.OnClickListener() { // Corrigido o nome da variável
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RecuperarSenha.class); // Redireciona para a página de redefinir senha
+                startActivity(intent);
             }
         });
 
